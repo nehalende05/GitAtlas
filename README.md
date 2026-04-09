@@ -164,18 +164,10 @@ Flagged commits are highlighted within the timeline.
 
 ---
 
-## Limitations
-
-* Performance may degrade on very large repositories
-* Commit classification is heuristic-based
-* Visualization assumes primarily linear commit progression
-
----
-
 ## Team
 
 Built by: Abhinav and Neha
-a
+
 
 * [Abhinav Bombale]
 * [Neha Lende]
