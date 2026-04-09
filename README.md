@@ -1,6 +1,6 @@
 # Gitatlas 🌌
 
-> Visual repository intelligence system for exploring commit history as a structured timeline
+> Visual repository intelligence — understand how code evolves, not just what changed
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -8,159 +8,141 @@
 
 ---
 
-## Overview
+## What is Gitatlas?
 
-Gitatlas is a web-based system for analyzing and visualizing GitHub repositories.
-It transforms commit history into an interactive, navigable timeline, allowing users to study how a codebase evolves over time.
+Gitatlas is a visual interface for exploring GitHub repositories through their history.
 
-Instead of reading sequential logs, users interact with a structured graph of commits, where each node represents a checkpoint in the repository’s development.
+Instead of scrolling through commits line by line, you navigate a repository as a continuous timeline — a sequence of checkpoints that represent how the system evolved over time.
 
----
-
-## Core Concept
-
-A repository is modeled as a directed timeline of changes:
-
-| Concept          | Representation in Gitatlas          |
-| ---------------- | ----------------------------------- |
-| Repository       | Timeline / Graph structure          |
-| Commit           | Node (checkpoint)                   |
-| Commit relation  | Directed edge                       |
-| Time progression | Top-left to bottom directional flow |
-| Activity density | Node distribution and clustering    |
+Each commit becomes a visible unit of progress. Relationships between commits become paths. The repository becomes something you can explore, not just read.
 
 ---
 
-## ✨ Features
+## The Idea
 
-* **Timeline Visualization**
-  Structured graph representation of commit history with directional flow
+GitHub shows commits as a list.
+Gitatlas treats them as a structure.
+
+A repository is modeled as a directed timeline where:
+
+* commits are checkpoints
+* changes are transitions
+* contributors are participants in the evolution
+* time is represented spatially
+
+The result is a view where development feels sequential, contextual, and navigable.
+
+---
+
+## Features
+
+* **Visual Timeline**
+  Commit history rendered as a flowing graph instead of a linear log
+
+* **Checkpoint-Based Exploration**
+  Each commit is an interactive node positioned along a directional path
 
 * **Commit Inspection**
-  Detailed view of individual commits including metadata and changes
+  Expand any checkpoint to view its metadata, changes, and context
 
-* **Repository Metrics**
-  Aggregated statistics derived from commit data
+* **Repository Insights**
+  Activity patterns, contribution frequency, and change volume
 
-* **Contributor Analysis**
-  Visibility into contribution patterns across time
+* **Contributor Visibility**
+  Understand who contributed and when
 
-* **Anomaly Detection ⚠️**
-  Identification of commits containing potentially sensitive data
+* **Risk Detection ⚠️**
+  Highlights commits containing sensitive patterns such as exposed keys or configuration files
 
-* **Contextual Summaries 🧠**
-  Condensed explanations of commit intent and impact
-
----
-
-## Interaction Model
-
-### Timeline View
-
-The primary interface renders commit history as a directed graph.
-
-| Component | Description                               |
-| --------- | ----------------------------------------- |
-| Nodes     | Represent commits                         |
-| Edges     | Represent parent-child relationships      |
-| Layout    | Diagonal progression (top-left to bottom) |
-| Rendering | Sequential to reflect temporal ordering   |
+* **Context Summaries 🧠**
+  Concise explanations of what a commit represents
 
 ---
 
-### Hover Interaction
+## How it works
 
-Provides a quick summary without leaving the timeline.
+You provide a repository URL.
+Gitatlas processes its commit history and constructs a structured timeline.
 
-| Field     | Description          |
-| --------- | -------------------- |
-| Message   | Commit message       |
-| Author    | Contributor name     |
-| Timestamp | Commit date and time |
+From there:
 
----
+* the timeline is rendered as a directed flow (top-left to bottom)
+* nodes appear as checkpoints along this path
+* edges represent progression
+* interactions reveal deeper layers of information
 
-### Commit Detail View
-
-Selecting a node opens a detailed inspection panel.
-
-| Section         | Description                         |
-| --------------- | ----------------------------------- |
-| Summary         | Condensed explanation of the commit |
-| Contributors    | Associated authors                  |
-| Timestamp       | Exact commit time                   |
-| File Changes    | Files modified                      |
-| Diff Statistics | Lines added and removed             |
+The system prioritizes readability and continuity over raw detail.
 
 ---
 
-## 📊 Repository Insights
+## Interaction
 
-Gitatlas extracts and integrates repository-level analytics into the visualization.
+The interface is built around two simple actions:
 
-| Metric                 | Description                       |
-| ---------------------- | --------------------------------- |
-| Total Commits          | Total number of commits           |
-| Commits per Day        | Distribution of commits over time |
-| Active Contributors    | Unique contributors               |
-| Contribution Frequency | Activity trends                   |
-| Change Volume          | Aggregate additions and deletions |
+**Hover**
+Quickly inspect a commit without leaving the timeline
 
----
+* commit message
+* author
+* timestamp
 
-## Analysis Capabilities
+**Click**
+Open a detailed view of the selected commit
 
-### Commit Classification
+* summary of the change
+* contributors involved
+* files modified
+* additions and deletions
 
-| Type     | Description             |
-| -------- | ----------------------- |
-| Feature  | Functional additions    |
-| Fix      | Bug corrections         |
-| Refactor | Structural improvements |
-| Minor    | Non-critical updates    |
+This allows both scanning and deep inspection without breaking flow.
 
 ---
 
-### Risk Detection ⚠️
+## What you can understand with Gitatlas
 
-| Condition             | Method                        |
-| --------------------- | ----------------------------- |
-| API key exposure      | Pattern matching              |
-| `.env` file inclusion | File inspection               |
-| Hardcoded credentials | Keyword and pattern detection |
+* when major features were introduced
+* how frequently development occurred
+* who contributed to specific parts of the system
+* where significant changes happened
+* when potential issues or risky changes were introduced
 
-Flagged commits are highlighted within the timeline.
-
----
-
-## ⚙️ Architecture
-
-| Layer         | Responsibility                                 |
-| ------------- | ---------------------------------------------- |
-| Data Fetch    | Retrieve commit data via GitHub APIs           |
-| Processing    | Normalize commit structure and relationships   |
-| Analysis      | Classification, aggregation, anomaly detection |
-| Visualization | Graph generation and rendering                 |
+It turns repository history into something interpretable at a glance.
 
 ---
 
-## 📖 Usage
+## Architecture
 
-1. Provide a GitHub repository URL
-2. Trigger analysis
-3. Explore the generated timeline
-4. Inspect commits for detailed information
+Gitatlas is structured into four layers:
+
+* **Data Layer**
+  Fetches commit data using GitHub APIs
+
+* **Processing Layer**
+  Normalizes relationships between commits and structures the timeline
+
+* **Analysis Layer**
+  Classifies commits, aggregates metrics, and detects anomalies
+
+* **Visualization Layer**
+  Renders the graph and handles interaction
 
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
-| Scenario         | Outcome                               |
-| ---------------- | ------------------------------------- |
-| Onboarding       | Understand project evolution quickly  |
-| Debugging        | Identify when changes were introduced |
-| Code Review      | Examine changes with context          |
-| Project Analysis | Evaluate development patterns         |
+* onboarding into unfamiliar repositories
+* understanding system evolution before making changes
+* debugging by tracing when behavior changed
+* reviewing contributions across time
+* presenting project history in a visual format
+
+---
+
+## Limitations
+
+* very large repositories may require optimization or partial rendering
+* commit classification is heuristic-based
+* visualization assumes relatively consistent commit structure
 
 ---
 
@@ -171,5 +153,3 @@ Built by: Abhinav and Neha
 
 * [Abhinav Bombale]
 * [Neha Lende]
-
----
